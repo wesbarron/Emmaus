@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block title %} Board of Directors {% endblock %}
+{% block content %}
+<div class="mx-auto bg-light bg-gradient" style="width:68%;">
+
+		<div class="container-fluid" id="body">
+			<div id="content">
+				<h2 class="text-center">Valley Walk to Emmaus Board of Directors</h2>
+				
+				<table class="table">
+					<thead class="table-dark">
+					  <tr>
+						<td scope="col">Member Position</td>
+						<td scope="col">Member Name</td>
+					  </tr>
+					</thead>
+					<tbody>
+					{% for member in board %}
+					  <tr>
+						<td>{{member.board_position}}</td>
+						<td>{{member.member}}</td>
+					  </tr>
+					  {% endfor %}
+					</tbody>
+				  </table>
+				
+				<!-- close content -->
+				</div>
+		</div>
+</div>
+{% endblock %}

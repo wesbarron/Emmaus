@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %} Phenix City Cluster {% endblock %}
+{% block content %}
+<div class="mx-auto bg-light bg-gradient" style="width:68%;">
+
+		<div class="container-fluid" id="body">
+			<div id="content">
+				<h2 class="text-center">Phenix City, Alabama Cluster</h2>
+				<h2>Gathering Locations and Dates:</h2>
+				
+				<table class="table">
+					<thead class="table-dark">
+					  <tr>
+						<td scope="col">Gathering</td>
+						<td scope="col">Location</td>
+						<td scope="col">Date</td>
+						<td scope="col">Time</td>
+					  </tr>
+					</thead>
+					<tbody>
+					{% for event in gatheringinfo %}
+					  <tr>
+						<td>{{event.title}}</td>
+						<td>{{event.location}}</td>
+						<td>{{event.date}}</td>
+						<td>{{event.time}}</td>
+					  </tr>
+					  {% endfor %}
+					</tbody>
+				  </table>
+				
+				<!-- close content -->
+				</div>
+		</div>
+</div>
+{% endblock %}

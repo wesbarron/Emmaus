@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %} Pilgrim List {% endblock %}
+{% block content %}
+<div class="mx-auto bg-light bg-gradient" style="width:68%;">
+	<h2 class="text-center">Valley Walk to Emmaus Pilgrim List</h2>
+		<div class="container-fluid" id="body">
+			<h4>Walk #{{ walk.walk_number }} Women Pilgrims</h4>
+			<div id="content" class="row row-cols-6">
+					{% for pilgrim in w_pilgrims %}
+					  <div class="align-items-center">
+						<td>{{pilgrim.pilgrim_name}}</td>
+					  </div>
+					  {% endfor %}
+				<!-- close content -->
+			</div><br><br>
+			<h4>Walk #{{ walk.walk_number }} Men Pilgrims</h4>
+				<div id="content" class="row row-cols-6">
+					{% for pilgrim in m_pilgrims %}
+					  <div class="align-items-center">
+						<td>{{pilgrim.pilgrim_name}}</td>
+					  </div>
+					  {% endfor %}
+				</div>
+				<!-- close content -->
+			</div>
+		</div>
+</div>
+{% endblock %}

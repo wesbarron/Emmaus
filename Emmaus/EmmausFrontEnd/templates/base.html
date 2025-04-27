@@ -14,19 +14,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="../static/style.css" rel="stylesheet">
     
-    <body>
+    <body class="container-fluid" style="overflow-x: hidden;">
       <!--Navabar starts here-->
 
       <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img class="img-thumbnail" src="../static/images/vwteLogo.avif" alt="Walk to Emmaus Logo" width="100" height="100"></a>
+          <a class="navbar-brand" href="/home"><img class="img-thumbnail" src="../static/images/vwteLogo.avif" alt="Walk to Emmaus Logo" width="100" height="100"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <a class="nav-link active" href="home.html" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link active" href="/home">
                   Home
                 </a>
               </li>
@@ -37,11 +37,11 @@
                   Services & Information
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Journey With Christ</a></li>
-                  <li><a class="dropdown-item" href="#">The Walk</a></li>
-                  <li><a class="dropdown-item" href="#">During The Walk</a></li>
-                  <li><a class="dropdown-item" href="#">After The Walk</a></li>
-                  <li><a class="dropdown-item" href="#">History of Emmaus</a></li>
+                  <li><a class="dropdown-item" href="/journey">Journey With Christ</a></li>
+                  <li><a class="dropdown-item" href="/walk">The Walk</a></li>
+                  <li><a class="dropdown-item" href="/during-walk">During The Walk</a></li>
+                  <li><a class="dropdown-item" href="/after-walk">After The Walk</a></li>
+                  <li><a class="dropdown-item" href="/history">History of Emmaus</a></li>
                 </ul>
               </li>
             </ul>
@@ -51,10 +51,10 @@
                   Valley Information
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Board of Directors</a></li>
-                  <li><a class="dropdown-item" href="#">Columbus Cluster</a></li>
-                  <li><a class="dropdown-item" href="#">Manchester Cluster</a></li>
-                  <li><a class="dropdown-item" href="#">Phenix City Cluster</a></li>
+                  <li><a class="dropdown-item" href="/board">Board of Directors</a></li>
+                  <li><a class="dropdown-item" href="/columbus">Columbus Cluster</a></li>
+                  <li><a class="dropdown-item" href="/manchester">Manchester Cluster</a></li>
+                  <li><a class="dropdown-item" href="/phenixcity">Phenix City Cluster</a></li>
                 </ul>
               </li>
             </ul>
@@ -65,16 +65,16 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li><a class="dropdown-item" href="#">Dates and Times</a></li>
-                  <li><a class="dropdown-item" href="#">Sponsorship</a></li>
-                  <li><a class="dropdown-item" href="#">Servanthood</a></li>
-                  <li><a class="dropdown-item" href="#">Agape</a></li>
-                  <li><a class="dropdown-item" href="#">Pilgrim List</a></li>
+                  <li><a class="dropdown-item" href="/sponsorship">Sponsorship</a></li>
+                  <li><a class="dropdown-item" href="/serve">Servanthood</a></li>
+                  <li><a class="dropdown-item" href="/agape">Agape</a></li>
+                  <li><a class="dropdown-item" href="/pilgrim">Pilgrim List</a></li>
                 </ul>
               </li>
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link active" href="/about">
                   About Us
                 </a>
               </li>
@@ -110,9 +110,12 @@
     <br>
     {% block content %}
     {% endblock %}
+    
+  </body>
+  <footer>
     <div class="text-center" id="footer">
       <p> &#8220;Suddenly, Jesus himself came along and joined them and began walking beside them.&#8221;   Luke 24.15 (NLT)</p>
       <!-- close footer -->
     </div>
-  </body>
+  </footer>
 </html>
