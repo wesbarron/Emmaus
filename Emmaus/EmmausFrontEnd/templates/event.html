@@ -1,0 +1,102 @@
+{% extends "base.html" %} {% block title %} Events {% endblock %}
+{% block content %}
+<div class="mx-auto bg-light bg-gradient" style="width:68%;">
+	<h2 class="text-center">Time of Walk and Weekend Events</h2>
+	<p><img src="../static/images/iconemmnew.gif" border="0" align="right" />
+		
+		<table width="60%" style="margin-left: 29%;">
+			<tr>
+				<td colspan="3"><strong>Thursday Send Off</strong></td>
+			</tr>
+			<tr>
+				<td width="25"></td>
+				<td width="250">Arrive at Pine Eden for Check In</td>
+				<td width="172">6:30 PM</td>
+			</tr>
+			<tr>
+				<td colspan="3"></td>
+			</tr>    
+			<tr>
+				<td>&nbsp;</td>
+				<td>Send Off Begins </td>
+				<td>7:00 PM</td>
+			</tr>
+			<tr>
+				<td colspan="3"></td>
+			</tr>
+			
+			<tr>
+				<td colspan="3"><strong>Saturday Candlelight</strong></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Arrive at Pine Eden</td>
+				<td>8:00 PM</td>
+			</tr>
+		  <!--  <tr>
+				<td></td>
+				<td>Pilgrims Walk</td>
+				<td>9:15 PM	10:15 PM (if summer)</td>
+			</tr>-->
+			<tr>
+				<td colspan="3"></td>
+			</tr>
+			<tr>
+				<td colspan="3"><strong>Sunday Closing</strong></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Arrive at Pine Eden</td>
+				<td>3:30 PM</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Greet New Pilgrims</td>
+				<td>4:00 PM</td>
+			</tr>
+		 </table>
+		 
+		</p>
+		 <br />
+		<div class="container-fluid" id="body">
+			<h4>Women's Walk</h4>
+			<table class="table">
+				<thead class="table-dark">
+				  <tr>
+					<td scope="col">Walk Number</td>
+					<td scope="col">Walk Dates</td>
+				  </tr>
+				</thead>
+				<tbody>
+					{% for event in womensevent %}
+					  <tr>
+						<td>{{event.walk_number}}</td>
+						<td>{{event.start_date}} - {{event.end_date}}</td>
+					  </tr>
+					  {% endfor %}
+				</tbody>
+			</table>
+				<!-- close content -->
+			</div><br><br>
+			<h4>Men's Walk</h4>
+			<table class="table">
+				<thead class="table-dark">
+				  <tr>
+					<td scope="col">Walk Number</td>
+					<td scope="col">Walk Dates</td>
+				  </tr>
+				</thead>
+				<tbody>
+					{% for event in mensevent %}
+					  <tr>
+						<td>{{event.walk_number}}</td>
+						<td>{{event.start_date}} - {{event.end_date}}</td>
+					  </tr>
+					  {% endfor %}
+				</tbody>
+			</table>
+				<!-- close content -->
+			</div>
+		</div>
+</div>
+{% endblock %}

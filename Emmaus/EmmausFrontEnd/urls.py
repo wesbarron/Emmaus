@@ -17,5 +17,7 @@ urlpatterns = [
     path("manchester/", views.manchester, name="manchester"),
     path("phenixcity/", views.phenixcity, name="phenixcity"),
     path("board/", views.board, name="board"),
-    path("pilgrim/", views.pilgrim, name="pilgrim")
+    path("pilgrim/", views.pilgrim, name="pilgrim"),
+    path("event/", views.event, name="event"),
+    path("manage_board/", views.update_board, name="manage_board")
 ]

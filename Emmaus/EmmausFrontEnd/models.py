@@ -21,3 +21,9 @@ class Pilgrim(models.Model):
     pilgrim_name = models.CharField(max_length=200)
     walk_number = models.CharField(max_length=200)
     walk_group = models.CharField(max_length=200)
+
+class Event(models.Model):
+    walk_number = models.CharField(max_length=200)
+    walk_group = models.CharField(max_length=200)
+    start_date = models.CharField(max_length=200)
+    end_date = models.CharField(max_length=200)

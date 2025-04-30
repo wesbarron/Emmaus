@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse
-from .models import TodoItem, GatheringInformation, BoardMember, Pilgrim
+from .models import TodoItem, GatheringInformation, BoardMember, Pilgrim, Event
 from datetime import datetime, timedelta
 from pytz import timezone
 from django.db.models import Max
+from .forms import BoardMembers
 
 # Create your views here.
 def home(request):
@@ -75,3 +76,26 @@ def pilgrim(request):
     mpilgrim = Pilgrim.objects.all().filter(walk_group = 'Men', walk_number = '39')
     walknumber = Pilgrim.objects.get(walk_number = Max('walk_number'))
     return render(request, "pilgrim.html", {'w_pilgrims' : wpilgrim, 'm_pilgrims' : mpilgrim, 'walk' : walknumber})
+
+def event(request):
+    eastern = timezone('US/Eastern')
+    fmt = '%B %d, %Y'
+    wloc_dt = eastern.localize(datetime.now()) - timedelta(hours=4) - timedelta(hours=24)
+    mloc_dt = eastern.localize(datetime.now()) - timedelta(hours=4) - timedelta(hours=24)
+    #print (loc_dt.strftime(fmt))
+    wevents = Event.objects.all().filter(walk_group="Women", end_date__gte = wloc_dt.strftime(fmt))
+    mevents = Event.objects.all().filter(walk_group="Men", end_date__gte = mloc_dt.strftime(fmt))
+    return render(request, "event.html", {'womensevent' : wevents, 'mensevent' : mevents})
+
+def update_board(request):
+    form = BoardMembers()
+    return render(request, 'manage_board.html', {'form': form})
+    # if request.method == "POST":
+    #     form = BoardMembers(request.POST)
+    #     if form.is_valid():
+    #         #BoardMember.objects.filter(member_name__form.MemberPosition)
+    #         #print(form.data)
+
+    #     else:
+    #         form = BoardMembers()
+    #     return render(request, 'manage_board.html', {'form': form})

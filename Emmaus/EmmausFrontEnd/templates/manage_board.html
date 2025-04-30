@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %} About the Valley Walk to Emmaus {% endblock %}
+{% block content %}
+<div class="mx-auto bg-light bg-gradient" style="width:68%;">
+
+		<div class="container-fluid" id="body">
+			<div id="content">
+				<form method="post">
+					{% csrf_token %}
+					{{ form.as_p }}
+					<button type="submit">Submit</button>
+				</form>	
+			</div>
+	  </div>
+</div>
+{% endblock %}
