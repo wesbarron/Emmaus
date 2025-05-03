@@ -19,5 +19,8 @@ urlpatterns = [
     path("board/", views.board, name="board"),
     path("pilgrim/", views.pilgrim, name="pilgrim"),
     path("event/", views.event, name="event"),
-    path("manage_board/", views.update_board, name="manage_board")
+    path("manage_board/", views.update_board, name="manage_board"),
+    path("manage_board_confirmation/", views.board_confirmation, name="manage_board_confirmation"),
+    path("manage_clusters/", views.add_cluster, name="manage_clusters"),
+    path("manage_clusters_confirmation/", views.cluster_confirmation, name="manage_clusters_confirmation")
 ]

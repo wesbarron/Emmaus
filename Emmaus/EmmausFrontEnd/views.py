@@ -1,9 +1,10 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from .models import TodoItem, GatheringInformation, BoardMember, Pilgrim, Event
 from datetime import datetime, timedelta
 from pytz import timezone
 from django.db.models import Max
-from .forms import BoardMembers
+from .forms import BoardMembers, Clusters
+from django.urls import reverse
 
 # Create your views here.
 def home(request):
@@ -65,10 +66,10 @@ def phenixcity(request):
     return render(request, "phenixcitycluster.html", {'gatheringinfo' : events})
 
 def board(request):
-    eastern = timezone('US/Eastern')
-    fmt = '%Y'
-    loc_dt = eastern.localize(datetime.now()) - timedelta(hours=4)
-    board = BoardMember.objects.all().filter(year = loc_dt.strftime(fmt))
+    # eastern = timezone('US/Eastern')
+    # fmt = '%Y'
+    # loc_dt = eastern.localize(datetime.now()) - timedelta(hours=4)
+    board = BoardMember.objects.all() #.filter(year = loc_dt.strftime(fmt))
     return render(request, "board.html", {'board' : board})
 
 def pilgrim(request):
@@ -88,14 +89,55 @@ def event(request):
     return render(request, "event.html", {'womensevent' : wevents, 'mensevent' : mevents})
 
 def update_board(request):
-    form = BoardMembers()
-    return render(request, 'manage_board.html', {'form': form})
-    # if request.method == "POST":
-    #     form = BoardMembers(request.POST)
-    #     if form.is_valid():
-    #         #BoardMember.objects.filter(member_name__form.MemberPosition)
-    #         #print(form.data)
+    if request.method == "POST":
+        form = BoardMembers(request.POST)
+        if form.is_valid():
+            position = form.cleaned_data["member_position"]
+            name = form.cleaned_data["member_name"]
+            context = {'MemberPosition': position, 'MemberName': name}
+            eastern = timezone('US/Eastern')
+            fmt = '%Y'
+            loc_dt = eastern.localize(datetime.now()) - timedelta(hours=4)
+            rec = BoardMember.objects.get(board_position=position)
+            rec.member = name #Corey Salzman
+            rec.year = loc_dt.strftime(fmt)
+            rec.save()
+            #url = reverse('board_confirmation', args=[position, name])
+            #return redirect('manage_board_confirmation')
+            return render(request, 'manage_board_confirmation.html', context)
+        else:
+            return render(request, 'manage_board.html', {'form': form})
+    else:
+        form = BoardMembers()
+        return render(request, 'manage_board.html', {'form': form})
+    
+def board_confirmation(request, position, name):
+    context = {'BoardPosition': position, 'BoardName': name}
+    return render(request, 'manage_board_confirmation.html', context)
 
-    #     else:
-    #         form = BoardMembers()
-    #     return render(request, 'manage_board.html', {'form': form})
+def add_cluster(request):
+    if request.method == "POST":
+        form = Clusters(request.POST)
+        if form.is_valid():
+            location = form.cleaned_data["location"]
+            date = form.cleaned_data["date"]
+            context = {'Location': location, 'Date': date}
+            # eastern = timezone('US/Eastern')
+            # fmt = '%B %d, %Y'
+            # loc_dt = eastern.localize(datetime.now()) - timedelta(hours=4)
+            # rec = BoardMember.objects.get(board_position=position)
+            # rec.member = name #Corey Salzman
+            # rec.year = loc_dt.strftime(fmt)
+            # rec.save()
+            #url = reverse('board_confirmation', args=[position, name])
+            #return redirect('manage_board_confirmation')
+            return render(request, 'manage_clusters_confirmation.html', context)
+        else:
+            return render(request, 'manage_clusters.html', {'form': form})
+    else:
+        form = Clusters()
+        return render(request, 'manage_clusters.html', {'form': form})
+    
+def cluster_confirmation(request, location, date):
+    context = {'Location': location, 'Date': date}
+    return render(request, 'manage_clusters_confirmation.html', context)
